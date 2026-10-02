@@ -82,13 +82,19 @@
 
 \makeatletter
 \AtEndPreamble{
-  \hypersetup{
-    colorlinks=true,
-    allcolors=fhsdarkgrey,
-    breaklinks
-  }
+    \hypersetup{
+        colorlinks=true,
+        allcolors=fhsdarkgrey,
+        breaklinks,
+        pdflang={de-AT},
+        pdfdisplaydoctitle=true
+    }
 }
 \makeatother
+
+\ifdefined\pdfpageattr
+    \pdfpageattr{/Tabs /S}
+\fi
 
 \setbeamertemplate{navigation symbols}{}
 

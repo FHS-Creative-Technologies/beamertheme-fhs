@@ -1,0 +1,42 @@
+\pkg{beamertheme-fhs}
+
+% version of the package (keep in sync with \ProvidesPackage in the .sty files)
+\version{1.0 2026-10-02}
+
+\author{Andreas Bilke}
+
+\uploader{Andreas Bilke}
+\email{andreas.bilke@fh-salzburg.ac.at}
+
+\license{cc-by-sa-4}
+
+\home{https://github.com/FHS-Creative-Technologies/beamertheme-fhs}
+\bugtracker{https://github.com/FHS-Creative-Technologies/beamertheme-fhs/issues}
+\repository{https://github.com/FHS-Creative-Technologies/beamertheme-fhs}
+
+\topic{presentation}
+
+\summary{Beamer theme for the Salzburg University of Applied Sciences}
+
+\begin{description}
+  beamertheme-fhs is a theme for the LaTeX beamer class following the
+  corporate design of the Salzburg University of Applied Sciences
+  (Fachhochschule Salzburg, FH Salzburg).
+
+  It provides a title page with the FH Salzburg logos, a frame title with
+  logo, a footline with date, institute, author and frame number, standout
+  frames for highlighted statements, and optional auto-generated
+  Creative Commons license   notices (CC BY 4.0, CC BY-SA 4.0) on
+  the title page in English or German.
+\end{description}
+
+\begin{announcement}
+  beamertheme-fhs provides a beamer theme following the corporate design
+  of the Salzburg University of Applied Sciences (FH Salzburg), including
+  optional Creative Commons license notices on the title page.
+\end{announcement}
+
+\begin{note}
+\end{note}
+
+\file{beamertheme-fhs.zip}

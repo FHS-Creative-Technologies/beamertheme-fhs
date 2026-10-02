@@ -1,0 +1,211 @@
+% Copyright 2023 Andreas Bilke.
+%
+% Except where otherwise noted, this work "beamertheme-fhs" by Andreas Bilke
+% is licensed under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{xurl}
+\usepackage{hyperref}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black!40},
+  backgroundcolor=\color{black!3},
+  xleftmargin=3pt,
+  xrightmargin=3pt
+}
+
+\newcommand{\pkg}{\textsf{beamertheme-fhs}}
+\newcommand{\cs}[1]{\texttt{\textbackslash #1}}
+\newcommand{\opt}[1]{\texttt{#1}}
+
+\hypersetup{
+  pdftitle={beamertheme-fhs -- Beamer theme for FH Salzburg},
+  pdfauthor={Andreas Bilke},
+  colorlinks=true,
+  allcolors=black!70!blue
+}
+
+\title{\pkg\\[.5ex]\large Beamer theme for FH Salzburg}
+\author{Andreas Bilke\\\href{mailto:andreas.bilke@fh-salzburg.ac.at}{\texttt{andreas.bilke@fh-salzburg.ac.at}}}
+\date{Version 1.0 -- 2026-10-02}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  \pkg{} is a theme for the \LaTeX{} \textsf{beamer} class following the
+  corporate design of the Salzburg University of Applied Sciences
+  (Fachhochschule Salzburg). It provides a title page with the FH Salzburg
+  logos, a frame title with logo, a footline with date, institute, author and
+  frame number, \enquote{standout} frames and optional Creative Commons
+  license notices on the title page.
+\end{abstract}
+
+\tableofcontents
+
+\section{Installation}
+
+If the theme is not provided by your \TeX{} distribution, copy or link the folder
+\texttt{beamertheme-fhs} to \texttt{\$TEXMFHOME/tex/latex/beamertheme-fhs}. The
+value of \texttt{\$TEXMFHOME} is shown by
+\begin{lstlisting}
+kpsewhich -var-value TEXMFHOME
+\end{lstlisting}
+
+\subsection{Requirements}
+
+Besides \textsf{beamer} the theme loads the following packages:
+\textsf{tikz}, \textsf{xcolor}, \textsf{etoolbox}, \textsf{xstring},
+\textsf{kvoptions}, \textsf{xspace}, \textsf{ccicons}, \textsf{csquotes},
+\textsf{helvet}, \textsf{graphicx} and \textsf{fontenc} (with option
+\opt{T1}).
+
+\section{Usage}
+
+The theme is selected with \cs{usetheme}:
+\begin{lstlisting}
+\documentclass{beamer}
+\usepackage[ngerman]{babel}
+\usetheme{fhs}
+
+\title{My presentation}
+\subtitle{An optional subtitle}
+\author{Jane Doe}
+\institute[ITS]{Information Technology and Systems Management}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{A frame title}
+  \begin{itemize}
+    \item First point
+    \item Second point
+  \end{itemize}
+\end{frame}
+\end{document}
+\end{lstlisting}
+
+The main theme \texttt{fhs} loads the color, font, inner and outer themes of
+the same name. They can be loaded separately with \cs{usecolortheme\{fhs\}},
+\cs{usefonttheme\{fhs\}}, \cs{useinnertheme\{fhs\}} and
+\cs{useoutertheme\{fhs\}}, but the inner and outer themes rely on lengths and
+packages defined by the main theme.
+
+\subsection{Title page}
+
+\cs{maketitle} creates a plain title page without frame number. It shows the
+FH Salzburg logos, the title and the subtitle. Used inside a \texttt{frame},
+\cs{maketitle} only inserts the title page content into that frame.
+
+\subsection{Frames}
+
+Every frame shows the frame title on the left and the FH Salzburg logo on the
+right. The footline contains the date (\cs{date}), the text
+\enquote{FH Salzburg}, the short institute and the short author (if given)
+and the frame number.
+
+\section{Theme options}
+
+\begin{description}
+  \item[\opt{license=none}] (default) No license notice on the title page.
+  \item[\opt{license=ccby}] Adds a \enquote{CC BY 4.0} notice to the title page.
+  \item[\opt{license=ccbysa}] Adds a \enquote{CC BY-SA 4.0} notice to the title page.
+\end{description}
+
+Example:
+\begin{lstlisting}
+\usetheme[license=ccbysa]{fhs}
+\end{lstlisting}
+
+The license notice is built from the title, the subtitle and the short author
+of the presentation, followed by the license name, the license icons and the
+license URL. Therefore an \cs{author} is required whenever a license is
+selected; otherwise an error is raised.
+
+\subsection{Language of the license notice}
+
+The license notice is written in English by default. If \textsf{babel} or
+\textsf{polyglossia} is loaded with one of the languages \opt{german},
+\opt{ngerman}, \opt{austrian}, \opt{naustrian}, \opt{swissgerman} or
+\opt{nswissgerman}, the German text is used while that language is active.
+
+\subsection{Pandoc}
+
+When using the theme with plain Markdown and converting it to PDF
+the theme and license selection could be done as follows:
+
+\begin{lstlisting}
+theme:
+    - fhs
+themeoptions:
+    - license=ccbysa
+\end{lstlisting}
+
+For RMarkdown the theme and its options are set in the metadata section:
+
+\begin{lstlisting}
+output:
+  beamer_presentation:
+    theme: fhs
+    pandoc_args: [
+      "-V", "themeoptions:license=ccbysa"
+    ]
+\end{lstlisting}
+
+\section{Additional features}
+
+\subsection{Standout frames}
+
+The frame option \opt{standout} creates a plain, centered frame with inverted
+colors and a large bold font, e.\,g.\ for questions or key messages:
+\begin{lstlisting}
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+\end{lstlisting}
+Standout frames do not get a frame number.
+
+\subsection{Quotes}
+
+If \textsf{csquotes} has not been loaded by the user, the theme loads it with
+the options \opt{autostyle}, \opt{german=guillemets} and
+\opt{austrian=guillemets} as defined within the corporate identity guidelines.
+To use other options, load \textsf{csquotes} yourself in the preamble.
+
+\section{License}
+
+Except where otherwise noted, this work \enquote{beamertheme-fhs} by Andreas Bilke is
+licensed under CC BY-SA 4.0
+(\url{https://creativecommons.org/licenses/by-sa/4.0/}).
+
+It is partially based on code from the metropolis theme by Matthias
+Vogelgesang and the \LaTeX{} community (\url{https://github.com/matze/mtheme/})
+licensed under CC BY-SA 4.0.
+
+The files \path{logo-fhs.pdf}, \path{logo-fhs-without-text.pdf},
+\path{logo-fhs-krn.pdf} and \path{logo-fhs-background.pdf} are copyright
+by the Salzburg University of Applied Sciences
+(\url{https://www.fh-salzburg.ac.at}).
+
+\section{Bug reports}
+
+Please report bugs and feature requests at
+\url{https://github.com/FHS-Creative-Technologies/beamertheme-fhs}.
+
+\end{document}

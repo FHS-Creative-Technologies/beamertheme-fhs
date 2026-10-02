@@ -47,14 +47,19 @@
 \BeforeBeginEnvironment{coverpages}{
     \IfStrEq{\BEAMERFHS@license}{none}{}{
         \ifdef{\@author}{}{
-            \PackageError{exam-fhs}{A CC license was choosen,\MessageBreak but no \protect\author\space was specified}{
+            \PackageError{beamerthemefhs}{A CC license was choosen,\MessageBreak but no \protect\author\space was specified}{
                 An author must be given for a correct CC attribution
             }
         }
     }
 }
 
-\usepackage[autostyle, german=guillemets, austrian=guillemets]{csquotes}
+% load csquotes late and only if the user did not load it, to avoid option clashes
+\AtEndPreamble{%
+    \@ifpackageloaded{csquotes}{}{%
+        \RequirePackage[autostyle, german=guillemets, austrian=guillemets]{csquotes}%
+    }%
+}
 
 \newlength{\fhs@frame@topmargin}
 \setlength{\fhs@frame@topmargin}{.078\paperheight}

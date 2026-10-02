@@ -13,8 +13,8 @@ template options to add some license hints directly on the first slides.
 
 The following options are allowed:
 
-1. `\usetheme[ccby]{fhs}` - Adding a Creative Commons by license to the front page
-2. `\usetheme[ccbysa]{fhs}` - Adding a Creative Commons by share alike license to the front page
+1. `\usetheme[license=ccby]{fhs}` - Adding a Creative Commons by license to the front page
+2. `\usetheme[license=ccbysa]{fhs}` - Adding a Creative Commons by share alike license to the front page
 
 The first page will then contain a full CC hint containing title and author
 (taken automatically from the slides meta data) and a license notice:

@@ -43,6 +43,25 @@
     \newcommand{\BEAMERFHSlicenseicons}{\ccbysa\xspace}
 }{}
 
+% license notice on the title page: #1 = title, #2 = author
+% English is the default, German variants are added to the babel/polyglossia captions
+\newcommand{\fhs@licensenotice@english}[2]{Except where otherwise noted, this work \enquote{\textbf{#1}} by #2\ is licensed under}
+\newcommand{\fhs@licensenotice@german}[2]{Sofern nicht anders angegeben, ist dieses Werk \enquote{\textbf{#1}} von #2\ lizenziert unter}
+\let\fhs@licensenotice\fhs@licensenotice@english
+
+\AtEndPreamble{%
+    \@for\fhs@lang:={english,british,american,UKenglish,USenglish}\do{%
+        \ifcsdef{captions\fhs@lang}{%
+            \csappto{captions\fhs@lang}{\let\fhs@licensenotice\fhs@licensenotice@english}%
+        }{}%
+    }%
+    \@for\fhs@lang:={german,ngerman,austrian,naustrian,swissgerman,nswissgerman}\do{%
+        \ifcsdef{captions\fhs@lang}{%
+            \csappto{captions\fhs@lang}{\let\fhs@licensenotice\fhs@licensenotice@german}%
+        }{}%
+    }%
+}
+
 \BeforeBeginEnvironment{coverpages}{
     \IfStrEq{\BEAMERFHS@license}{none}{}{
         \ifdef{\@author}{}{
@@ -89,9 +108,12 @@
         colorlinks=true,
         allcolors=fhsdarkgrey,
         breaklinks,
-        pdflang={de-AT},
         pdfdisplaydoctitle=true
     }
+    % take the PDF language from the babel main language
+    \ifdefined\BCPdata
+        \hypersetup{pdflang=\BCPdata{tag}}
+    \fi
 }
 
 \ifdefined\pdfpageattr

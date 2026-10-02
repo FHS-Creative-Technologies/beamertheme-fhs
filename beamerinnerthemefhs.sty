@@ -26,8 +26,7 @@
 
     \IfStrEq{\BEAMERFHS@license}{none}{}{
       \node at ($(current page.south west) + (0.5, 0.5)$) [anchor=south west, align=left, font=\tiny, text width=.5\paperwidth] {
-      Except where otherwise noted, this work \enquote{\textbf{\inserttitle\ifx\insertsubtitle\@empty\else\ -- \insertsubtitle\fi}} by \insertshortauthor\
-      is licensed under \\
+      \fhs@licensenotice{\inserttitle\ifx\insertsubtitle\@empty\else\ -- \insertsubtitle\fi}{\insertshortauthor} \\
       \textbf{\BEAMERFHSlicensename} \BEAMERFHSlicenseicons \BEAMERFHSlicenseurl
       };
     }

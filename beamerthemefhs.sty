@@ -11,13 +11,12 @@
 
 \mode<presentation>
 
-\usepackage[T1]{fontenc}
-\usepackage{color}
-\usepackage{tikz}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{tikz}
 \tikzset{
     every picture/.append style={remember picture}
 }
-\usepackage{xcolor}
+\RequirePackage{xcolor}
 
 \RequirePackage{etoolbox}
 \RequirePackage{xstring}
@@ -85,7 +84,6 @@
 \useinnertheme{fhs}
 \useoutertheme{fhs}
 
-\makeatletter
 \AtEndPreamble{
     \hypersetup{
         colorlinks=true,
@@ -95,7 +93,6 @@
         pdfdisplaydoctitle=true
     }
 }
-\makeatother
 
 \ifdefined\pdfpageattr
     \pdfpageattr{/Tabs /S}

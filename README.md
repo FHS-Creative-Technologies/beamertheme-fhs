@@ -42,8 +42,7 @@ When converting plain Markdown with Pandoc, select the theme and the license opt
 in the YAML metadata block:
 
 ```
-theme:
-    - fhs
+theme: fhs
 themeoptions:
     - license=ccbysa
 ```
